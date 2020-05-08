@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'BmiForm.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -8,23 +9,20 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  int count = 0;
-
-  void increment() => setState(() { count++; });
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: new Center(
-        child: new Text(
-          '$count',
-          style: Theme.of(context).textTheme.headline1,
-        ),
+      appBar: new AppBar(
+        title: Text('BMI'),
+        backgroundColor: Color.fromRGBO(255, 105, 180, 1),
       ),
-      floatingActionButton: new FloatingActionButton(
-        onPressed: increment,
-        child: new Icon(Icons.add_circle_outline),
+      body: Column(
+        children: <Widget>[
+          Image.asset('assets/bmi.png'),
+          BmiForm(),
+        ],
       ),
+      resizeToAvoidBottomInset: false
     );
   }
 }

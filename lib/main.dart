@@ -9,10 +9,10 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: "1. Counter App",
+      title: "2. BMI",
       home: new HomePage(),
       theme: new ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.red,
         visualDensity: VisualDensity.adaptivePlatformDensity
       ),
     );
