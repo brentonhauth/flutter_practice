@@ -1,13 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'ResultsPage.dart';
 
+class BmiData with ChangeNotifier {
+  double _age = 0,
+    _height = 0, // in
+    _weight = 0; // lb
+  //
 
-enum BmiFlag { underweight, normal, overweight }
+  set age(double val) {
+    _age = val;
+    notifyListeners();
+  }
 
-class _BmiData {
-  double age = 0;
-  double height = 0; // in
-  double weight = 0; // lb
+  set height(double val) {
+    _height = val;
+    notifyListeners();
+  }
+
+  set weight(double val) {
+    _weight = val;
+    notifyListeners();
+  }
+
+  double get age => _age;
+  double get height => _height;
+  double get weight => _weight;
+
+  // void update() {
+  //   notifyListeners();
+  // }
+
 
   double calculate() {
     var heightSquared = height * height;
@@ -29,15 +52,14 @@ class _BmiData {
 
 }
 
-class BmiForm extends StatefulWidget {
-  @override
-  _BmiFormState createState() => _BmiFormState();
-}
+// class BmiForm extends StatefulWidget {
+//   @override
+//   _BmiFormState createState() => _BmiFormState();
+// }
 
-class _BmiFormState extends State<BmiForm> {
+class BmiForm extends StatelessWidget {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final _BmiData bmiData = new _BmiData();
 
   double _validateInput(String val) {
     if (val.isEmpty) {
@@ -55,6 +77,9 @@ class _BmiFormState extends State<BmiForm> {
 
   @override
   Widget build(BuildContext context) {
+
+    var bmiData = Provider.of<BmiData>(context);
+
     return new Form(
       key: this._formKey,
       child: new Column(
@@ -113,16 +138,9 @@ class _BmiFormState extends State<BmiForm> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ResultsPage(
-                      bmi: bmiData.calculate(),
-                      weightCategory: bmiData.getOverOrUnderWeight(),
-                    )
+                    builder: (context) => ResultsPage()
                   )
                 );
-
-
-                // ... it is valid
-                // calc bmi, change screens
               }
             },
             child: Text('Calculate'),

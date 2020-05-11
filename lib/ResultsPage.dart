@@ -1,44 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'BmiForm.dart';
 
 class ResultsPage extends StatelessWidget {
 
-  final double bmi;
-  final String weightCategory;
-
-  ResultsPage({this.bmi, this.weightCategory});
+  ResultsPage();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      
-      appBar: new AppBar(
-        title: Text('BMI'),
-        backgroundColor: Color.fromRGBO(255, 105, 180, 1),
-      ),
 
-      body: Center(
-        child: new Column(
-          children: <Widget>[
+    return Consumer<BmiData>(
+      builder: (context, bmiData, child) {
+        var weightCategory = bmiData.getOverOrUnderWeight();
+        var bmi = bmiData.calculate();
 
-            Text(
-              'Your BMI is ${bmi.toStringAsFixed(3)}',
-              style: TextStyle(
-                fontSize: 25,
-                color: Colors.blue
-              ),
-            ),
+        return  Scaffold(
+          appBar: new AppBar(
+            title: Text('BMI'),
+            backgroundColor: Color.fromRGBO(255, 105, 180, 1),
+          ),
 
-            Text(
-              'You are $weightCategory',
-              style: TextStyle(
-                fontSize: 25,
-                color: weightCategory != "normal" ? Colors.red : Colors.blue
-              ),
+          body: Center(
+            child: new Column(
+              children: <Widget>[
+
+                Text(
+                  'Your BMI is ${bmi.toStringAsFixed(3)}',
+                  style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.blue
+                  ),
+                ),
+
+                Text(
+                  'You are $weightCategory',
+                  style: TextStyle(
+                    fontSize: 25,
+                    color: weightCategory != "normal" ? Colors.red : Colors.blue
+                  ),
+                )
+
+              ],
             )
-
-          ],
-      )
-      )
+          )
+        );
+      }
     );
   }
 }
