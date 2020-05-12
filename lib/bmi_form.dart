@@ -57,6 +57,7 @@ class _BmiFormState extends State<BmiForm> {
       key: this._formKey,
       child: new Column(
         children: <Widget>[
+
           // Age Field
           TextFormField(
             decoration: InputDecoration(icon: Icon(Icons.person), labelText: 'Age'),
@@ -117,10 +118,6 @@ class _BmiFormState extends State<BmiForm> {
                     )
                   )
                 );
-
-
-                // ... it is valid
-                // calc bmi, change screens
               }
             },
             child: Text('Calculate'),

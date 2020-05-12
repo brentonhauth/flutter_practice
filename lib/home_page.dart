@@ -15,20 +15,37 @@ class _HomePageState extends State<HomePage> {
       appBar: new AppBar(
         title: Text('BMI'),
         backgroundColor: Color.fromRGBO(255, 105, 180, 1),
+        
       ),
-      body: new SingleChildScrollView(
-        physics: new NeverScrollableScrollPhysics(),
-        child: ConstrainedBox(
-          constraints: new BoxConstraints(
-            minWidth: MediaQuery.of(context).size.width,
-            minHeight: MediaQuery.of(context).size.height,
+      body: new ListView(
+        children: <Widget>[
+          Image.asset(
+            'assets/bmi.png',
           ),
-          child: new Column(
-            children: <Widget>[Image.asset('assets/bmi.png'), BmiForm()],
-          ),
-        ),
-      ),
-      resizeToAvoidBottomInset: false
+          BmiForm()
+        ]
+      )
     );
   }
 }
+
+
+// return Scaffold(
+//       appBar: new AppBar(
+//         title: Text('BMI'),
+//         backgroundColor: Color.fromRGBO(255, 105, 180, 1),
+//       ),
+//       body: new SingleChildScrollView(
+//         physics: new NeverScrollableScrollPhysics(),
+//         child: ConstrainedBox(
+//           constraints: new BoxConstraints(
+//             minWidth: MediaQuery.of(context).size.width,
+//             minHeight: MediaQuery.of(context).size.height,
+//           ),
+//           child: new Column(
+//             children: <Widget>[Image.asset('assets/bmi.png'), BmiForm()],
+//           ),
+//         ),
+//       ),
+//       resizeToAvoidBottomInset: false
+//     );
