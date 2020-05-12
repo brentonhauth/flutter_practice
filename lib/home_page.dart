@@ -8,16 +8,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  int count = 0;
+  int _count = 0;
 
-  void increment() => setState(() { count++; });
+  void increment() => setState(() { _count++; });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: new Center(
         child: new Text(
-          '$count',
+          '$_count',
           style: Theme.of(context).textTheme.headline1,
         ),
       ),
