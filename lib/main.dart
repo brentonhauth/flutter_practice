@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'HomePage.dart';
-import 'Counter.dart';
+import 'home_page.dart';
+import 'counter.dart';
 
 void main() => runApp(MainApp());
 
