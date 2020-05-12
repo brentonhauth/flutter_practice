@@ -24,7 +24,9 @@ class ResultsPage extends StatelessWidget {
               'You are $weightCategory',
               style: TextStyle(
                   fontSize: 25,
-                  color: weightCategory != "normal" ? Colors.red : Colors.blue),
+                  color: weightCategory != "normal" ?
+                    Colors.red :
+                    Colors.blue),
             )
           ],
         )));

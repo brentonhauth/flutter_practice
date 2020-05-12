@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'BmiForm.dart';
+import 'bmi_form.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -16,11 +16,17 @@ class _HomePageState extends State<HomePage> {
         title: Text('BMI'),
         backgroundColor: Color.fromRGBO(255, 105, 180, 1),
       ),
-      body: Column(
-        children: <Widget>[
-          Image.asset('assets/bmi.png'),
-          BmiForm(),
-        ],
+      body: new SingleChildScrollView(
+        physics: new NeverScrollableScrollPhysics(),
+        child: ConstrainedBox(
+          constraints: new BoxConstraints(
+            minWidth: MediaQuery.of(context).size.width,
+            minHeight: MediaQuery.of(context).size.height,
+          ),
+          child: new Column(
+            children: <Widget>[Image.asset('assets/bmi.png'), BmiForm()],
+          ),
+        ),
       ),
       resizeToAvoidBottomInset: false
     );

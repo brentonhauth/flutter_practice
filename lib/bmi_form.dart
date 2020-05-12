@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'ResultsPage.dart';
+import 'results_page.dart';
 
-
-enum BmiFlag { underweight, normal, overweight }
 
 class _BmiData {
   double age = 0;
