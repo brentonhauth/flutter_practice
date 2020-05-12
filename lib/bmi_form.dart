@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'ResultsPage.dart';
+import 'results_page.dart';
 
 class BmiData with ChangeNotifier {
   double _age = 0,
@@ -26,10 +26,6 @@ class BmiData with ChangeNotifier {
   double get age => _age;
   double get height => _height;
   double get weight => _weight;
-
-  // void update() {
-  //   notifyListeners();
-  // }
 
 
   double calculate() {

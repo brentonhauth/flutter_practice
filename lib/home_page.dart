@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'BmiForm.dart';
+import 'bmi_form.dart';
 
 
 class HomePage extends StatefulWidget {

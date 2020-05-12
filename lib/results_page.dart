@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'BmiForm.dart';
+import 'bmi_form.dart';
 
 class ResultsPage extends StatelessWidget {
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'HomePage.dart';
-import 'BmiForm.dart';
+import 'home_page.dart';
+import 'bmi_form.dart';
 
 
 void main() => runApp(MainApp());
