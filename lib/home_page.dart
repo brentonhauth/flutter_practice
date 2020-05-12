@@ -16,13 +16,21 @@ class _HomePageState extends State<HomePage> {
         title: Text('BMI'),
         backgroundColor: Color.fromRGBO(255, 105, 180, 1),
       ),
-      body: Column(
+      body: ListView(
         children: <Widget>[
-          Image.asset('assets/bmi.png'),
+          Container(
+            child: Image.asset(
+              'assets/bmi.png',
+              fit: BoxFit.fitHeight,
+              height: 250,
+            ),
+            padding: EdgeInsets.all(20),
+          ),
+
           BmiForm(),
         ],
       ),
-      resizeToAvoidBottomInset: false
+      // resizeToAvoidBottomInset: false
     );
   }
 }
