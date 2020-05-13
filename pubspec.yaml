@@ -21,6 +21,8 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  provider: ^4.0.0
+  http: ^0.12.1
   flutter:
     sdk: flutter
 
@@ -46,9 +48,13 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-      - assets/bmi.png 
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+      # - assets/images/light_rain.png
+      - assets/images/umbrella.png
+      - assets/images/clear.jpg
+      - assets/images/clouds.jpg
+      - assets/images/rain.jpg
+      - assets/images/snow.jpg
+      - assets/images/thunderstorm.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
