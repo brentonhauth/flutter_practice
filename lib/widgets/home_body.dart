@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'models/weather_data.dart';
+import '../blocs/weather_data.dart';
 import 'temp_display.dart';
 import 'city_title.dart';
 

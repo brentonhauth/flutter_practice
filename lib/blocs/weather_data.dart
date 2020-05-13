@@ -1,16 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import '../../services/service.dart';
-
-final Map<String, String> _backgrounds = {
-  'drizzle': 'umbrella.png',
-  'thunderstorm': 'thunderstorm.jpg',
-  'rain': 'rain.jpg',
-  'snow': 'snow.jpg',
-  'clear': 'clear.jpg',
-  'clouds': 'clouds.jpg'
-};
+import '../services/service.dart';
 
 WeatherData defaultWeatherData() {
   var data = WeatherData();
@@ -19,6 +10,16 @@ WeatherData defaultWeatherData() {
 }
 
 class WeatherData with ChangeNotifier {
+
+  static final Map<String, String> _backgrounds = {
+    'drizzle': 'umbrella.png',
+    'thunderstorm': 'thunderstorm.jpg',
+    'rain': 'rain.jpg',
+    'snow': 'snow.jpg',
+    'clear': 'clear.jpg',
+    'clouds': 'clouds.jpg'
+  };
+
   static final String _defaultCity = 'Vancouver';
   static final String _defaultBackground = 'snow.jpg';
   static final String _backgroundLocation = 'assets/images';
@@ -69,9 +70,9 @@ class WeatherData with ChangeNotifier {
   }
 
   void _extractTemperatures(Map tempObj) {
-    temp = tempObj['temp'] + 0.0;
-    minTemp = tempObj['temp_min'] + 0.0;
-    maxTemp = tempObj['temp_max'] + 0.0;
+    temp = double.parse(tempObj['temp']);
+    minTemp = double.parse(tempObj['temp_min']);
+    maxTemp = double.parse(tempObj['temp_max']);
   }
 }
 

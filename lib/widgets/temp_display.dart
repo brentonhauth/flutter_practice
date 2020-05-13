@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'models/weather_data.dart';
+import '../blocs/weather_data.dart';
 import 'package:provider/provider.dart';
 
 class TempDisplay extends StatelessWidget {

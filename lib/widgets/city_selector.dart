@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_practice/blocs/models/weather_data.dart';
+import '../blocs/weather_data.dart';
 
 class CitySelector extends StatelessWidget {
   final List<String> _cities = <String>[

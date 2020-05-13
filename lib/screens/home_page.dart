@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../blocs/city_selector.dart';
-import '../blocs/home_body.dart';
-import '../blocs/models/weather_data.dart';
+import '../widgets/city_selector.dart';
+import '../widgets/home_body.dart';
+import '../blocs/weather_data.dart';
 
 
 class HomePage extends StatefulWidget {
