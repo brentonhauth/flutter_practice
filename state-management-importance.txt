@@ -1,0 +1,21 @@
+* Very briefly (3 sentences) tell us why state management is important
+=======================================================================
+
+State management is important because it allows you to maintain control throughout the application.
+Furthermore state management simplifies the application allowing you to access data from multiple
+locations. State management allows you to reuse logic and reproduce different states more easily.
+
+
+
+
+
+
+* Very briefly (3 sentences) tell us why state management may not be necessary
+=======================================================================
+
+State management may not be necessary for states that are not global, and only pertains
+to a single object. Unless the state is difficult to reproduce. Furthermore, state management
+should not be considered if implementing it would only make your application more complex.
+
+
+
