@@ -3,14 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import '../services/service.dart';
 
-WeatherData defaultWeatherData() {
-  var data = WeatherData();
-  data.setWeather(data.city);
-  return data;
-}
-
 class WeatherData with ChangeNotifier {
-
   static final Map<String, String> _backgrounds = {
     'drizzle': 'umbrella.png',
     'thunderstorm': 'thunderstorm.jpg',
@@ -25,12 +18,17 @@ class WeatherData with ChangeNotifier {
   static final String _backgroundLocation = 'assets/images';
   static final String _iconLocation = 'https://openweathermap.org/img/wn';
 
-  String city, background, icon;
+  String city, background, icon = " ";
 
-  double temp, minTemp, maxTemp;
+  dynamic temp, minTemp, maxTemp = " ";
+
+  WeatherData _data;
 
   WeatherData() {
     _setDefaultValues();
+    setWeather("Vancouver");
+
+    // _setDefaultValues();
   }
 
   void _setDefaultValues() {
@@ -45,6 +43,7 @@ class WeatherData with ChangeNotifier {
   void setWeather(String city) async {
     Response res = await Service.getWeather(city);
 
+    city = city;
     var map = json.decode(res.body);
 
     var weatherObj = (map['weather'] as List)[0];
@@ -70,9 +69,10 @@ class WeatherData with ChangeNotifier {
   }
 
   void _extractTemperatures(Map tempObj) {
-    temp = double.parse(tempObj['temp']);
-    minTemp = double.parse(tempObj['temp_min']);
-    maxTemp = double.parse(tempObj['temp_max']);
+    print("OBJECT IS " + tempObj["temp"].toString());
+    temp = tempObj['temp'];
+    minTemp = tempObj['temp_min'];
+    maxTemp = tempObj['temp_max'];
   }
 }
 
