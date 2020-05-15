@@ -21,6 +21,6 @@ class WeatherModel {
 
   WeatherModel({this.city, this.icon, this.main, this.temp, this.minTemp, this.maxTemp});
 
-  factory WeatherModel.fromJson(Map<String, dynamic> json) => _$WeatherFromJson(json);
-  Map<String, dynamic> toJson() => _$WeatherToJson(this);
+  factory WeatherModel.fromJson(Map<String, dynamic> json) => _$WeatherModelFromJson(json);
+  Map<String, dynamic> toJson() => _$WeatherModelToJson(this);
 }
