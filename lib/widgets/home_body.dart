@@ -11,7 +11,7 @@ class HomeBody extends StatelessWidget {
       return new Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(weatherData.background),
+            image: AssetImage(weatherData.getBackgroundUrl()),
             fit: BoxFit.cover,
           ),
         ),
@@ -19,7 +19,7 @@ class HomeBody extends StatelessWidget {
             padding: EdgeInsets.only(top: 40, left: 20, right: 20),
             children: <Widget>[
               CityTitle(),
-              Image.network(weatherData.icon, scale: .5),
+              Image.network(weatherData.getIconUrl(), scale: .5),
               TempDisplay(),
             ]),
       );

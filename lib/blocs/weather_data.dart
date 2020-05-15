@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import '../services/service.dart';
 import '../models/weather_model.dart';
+import '../models/temperature_model.dart';
+import '../models/condition_model.dart';
 
 class WeatherData with ChangeNotifier {
+
+  // Static Constants
   static final Map<String, String> _backgrounds = {
     'drizzle': 'umbrella.png',
     'thunderstorm': 'thunderstorm.jpg',
@@ -13,95 +17,88 @@ class WeatherData with ChangeNotifier {
     'clear': 'clear.jpg',
     'clouds': 'clouds.jpg'
   };
-
   static final String _defaultCity = 'Vancouver';
-  static final String _defaultBackground = 'snow.jpg';
+  static final String _defaultBackground = 'clear';
   static final String _backgroundLocation = 'assets/images';
+  static final String _defaultIcon = '01d';
   static final String _iconLocation = 'https://openweathermap.org/img/wn';
 
-  String background; // turn into property
-  WeatherModel _model;
 
-  get city => _model?.city;
-  get icon => _model?.icon;
-  get temp => _model?.temp;
-  get minTemp => _model?.minTemp;
-  get maxTemp => _model?.maxTemp;
+  Weather _model;
 
+  // Getters
+  String get city => _model.city;
+  String get iconId => _model.condition.iconId;
+  String get backgroundId => _model.condition.backgroundId;
+  get temp => _model.temperature.temp;
+  get minTemp => _model.temperature.minTemp;
+  get maxTemp => _model.temperature.maxTemp;
+
+  // Setters
   set city(String c) {
-    _model?.city = c;
+    _model.city = c;
     notifyListeners();
   }
 
-  set icon(String i) {
-    _model?.icon = i;
+  set iconId(String i) {
+    _model.condition.iconId = i;
+    notifyListeners();
+  }
+
+  set backgroundId(String b) {
+    _model.condition.backgroundId = b;
     notifyListeners();
   }
 
   set temp(dynamic t) {
-    _model?.temp = t;
+    _model.temperature.temp = t;
     notifyListeners();
   }
 
   set minTemp(dynamic t) {
-    _model?.minTemp = t;
+    _model.temperature.minTemp = t;
     notifyListeners();
   }
 
   set maxTemp(dynamic t) {
-    _model?.maxTemp = t;
+    _model.temperature.maxTemp = t;
     notifyListeners();
   }
 
-  WeatherData() {
-    _setDefaultValues();
-    setWeather("Vancouver");
 
-    // _setDefaultValues();
+  WeatherData() {
+    _model = Weather(
+      city: _defaultCity,
+      condition: Condition(),
+      temperature: Temperature()
+    );
+
+    setWeather(_defaultCity);
   }
 
-  void _setDefaultValues() {
-    city = _defaultCity;
-    background = '$_backgroundLocation/$_defaultBackground';
-    icon = '$_iconLocation/01d@2x.png';
-    temp = 0.0;
-    minTemp = 0.0;
-    maxTemp = 0.0;
+
+  String getBackgroundUrl() {
+    String bg = backgroundId != null
+      && _backgrounds.containsKey(backgroundId.toLowerCase())
+      ? _backgrounds[backgroundId.toLowerCase()]
+      : _backgrounds[_defaultBackground];
+    
+    return '$_backgroundLocation/$bg';
+  }
+
+  String getIconUrl() {
+    String ico = iconId ?? _defaultIcon;
+    return '$_iconLocation/$ico@2x.png';
   }
 
   void setWeather(String city) async {
     Response res = await Service.getWeather(city);
 
-    city = city;
-    var map = json.decode(res.body);
+    Map<String, dynamic> data = json.decode(res.body);
 
-    var weatherObj = (map['weather'] as List)[0];
-    var temps = map['main'] as Map;
+    _model = Weather.fromJson(data);
 
-    _extractWeather(weatherObj);
-    _extractTemperatures(temps);
-
-    this.city = city;
     notifyListeners();
-  }
-
-  void _extractWeather(Map weatherObj) {
-    var weather = (weatherObj['main'] as String).toLowerCase();
-
-    var iconId = weatherObj['icon'] as String;
-    icon = '$_iconLocation/$iconId@2x.png';
-
-    var bg = _backgrounds.containsKey(weather)
-        ? _backgrounds[weather]
-        : _defaultBackground;
-    background = '$_backgroundLocation/$bg';
-  }
-
-  void _extractTemperatures(Map tempObj) {
-    print("OBJECT IS " + tempObj["temp"].toString());
-    temp = tempObj['temp'];
-    minTemp = tempObj['temp_min'];
-    maxTemp = tempObj['temp_max'];
   }
 }
 
