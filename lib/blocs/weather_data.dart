@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import '../services/service.dart';
+import '../models/weather_model.dart';
 
 class WeatherData with ChangeNotifier {
   static final Map<String, String> _backgrounds = {
@@ -18,11 +19,39 @@ class WeatherData with ChangeNotifier {
   static final String _backgroundLocation = 'assets/images';
   static final String _iconLocation = 'https://openweathermap.org/img/wn';
 
-  String city, background, icon = " ";
+  String background; // turn into property
+  WeatherModel _model;
 
-  dynamic temp, minTemp, maxTemp = " ";
+  get city => _model?.city;
+  get icon => _model?.icon;
+  get temp => _model?.temp;
+  get minTemp => _model?.minTemp;
+  get maxTemp => _model?.maxTemp;
 
-  WeatherData _data;
+  set city(String c) {
+    _model?.city = c;
+    notifyListeners();
+  }
+
+  set icon(String i) {
+    _model?.icon = i;
+    notifyListeners();
+  }
+
+  set temp(dynamic t) {
+    _model?.temp = t;
+    notifyListeners();
+  }
+
+  set minTemp(dynamic t) {
+    _model?.minTemp = t;
+    notifyListeners();
+  }
+
+  set maxTemp(dynamic t) {
+    _model?.maxTemp = t;
+    notifyListeners();
+  }
 
   WeatherData() {
     _setDefaultValues();
